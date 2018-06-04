@@ -17,14 +17,17 @@ Refer to http://wiki.ros.org/turtlesim for usage
 
 ## Docker usage
 
-### Using prebuilt image
 
-mathieula/web-turtlesim
+
+### Using prebuilt image
+```
+docker run -it --env ROS_MASTER_URI=http://<hostname>:11311/ --network host mathieula/web-turtlesim
+```
 
 ### Build your own image
 
 ```
-docker run -it --env ROS_MASTER_URI=http://<hostname>:11311/ --network host mathieula/web-turtlesim
+docker build . -t  <your docker image tag>
 ```
 then you can launch it via :
 ```
