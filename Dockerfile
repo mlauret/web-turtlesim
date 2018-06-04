@@ -4,7 +4,6 @@ ADD client client
 ADD images images
 ADD index.html index.html
 ADD package.json package.json
-ADD node_modules node_modules
 ADD server.js server.js
 
 
