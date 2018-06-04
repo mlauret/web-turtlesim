@@ -1,6 +1,3 @@
-//Import socket.io and PIXI
-import { PIXI } from "/js/pixi.min.js"
-import { io } from "/socket.io/socket.io.js"
 //Create a Pixi Application
 let app = new PIXI.Application({ width: 512, height: 512 });
 app.renderer.autoResize = true;
@@ -8,11 +5,13 @@ app.renderer.backgroundColor = 0x4556FF;
 
 let turtle;
 
-var socket = io();
-socket.on("cmd_vel_1", function(msg){
-    var array = msg.split(",");
-    turtle.speed = parseFloat(array[0]);
-    turtle.steer = parseFloat(array[1])*0.0174533;
+$(function () {
+    var socket = io();
+    socket.on("cmd_vel_1", function(msg){
+      var array = msg.split(",");
+      turtle.speed = parseFloat(array[0]);
+      turtle.steer = parseFloat(array[1])*0.0174533;
+    });
 });
 
 function gameLoop(delta){
