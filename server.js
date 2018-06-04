@@ -29,9 +29,9 @@ rosnodejs.initNode("/my_node")
 .then(() => {
 	const nh = rosnodejs.nh;
 	const sub = nh.subscribe("turtle"+numberOfTurtle+"/cmd_vel", "geometry_msgs/Twist", (msg) => {
-    var msg = JSON.parse(JSON.stringify(msg));
+    var data = JSON.parse(JSON.stringify(msg));
     var turtleNumber = 1; 
-    var turtleVel = msg.linear.x.toString() +","+msg.angular.z.toString() ;
+    var turtleVel = data.linear.x.toString() + "," + data.angular.z.toString() ;
     io.emit("cmd_vel_"+turtleNumber, turtleVel);
   });
   numberOfTurtle += 1;
