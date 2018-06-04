@@ -10,7 +10,7 @@ ADD server.js server.js
 
 
 # Install NVM to install nodejs and npm
-# Thanks to remarkablemark and its gist : https://gist.github.com/remarkablemark/aacf14c29b3f01d6900d13137b21db3a
+# Thanks to remarkablemark and his gist : https://gist.github.com/remarkablemark/aacf14c29b3f01d6900d13137b21db3a
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN apt-get update \
