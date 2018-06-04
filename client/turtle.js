@@ -19,14 +19,14 @@ function setup() {
     turtle.speed = 0;
     turtle.steer = 0;
     app.stage.addChild(turtle);
-    app.ticker.add(delta => gameLoop(delta));
+    app.ticker.add((delta) => gameLoop(delta));
 }
 
 
 
 $(function () {
     var socket = io();
-    socket.on('cmd_vel_1', function(msg){
+    socket.on("cmd_vel_1", function(msg){
       var array = msg.split(",");
       turtle.speed = parseFloat(array[0]);
       turtle.steer = parseFloat(array[1])*0.0174533;
@@ -36,7 +36,7 @@ $(function () {
 function gameLoop(delta){
 
     turtle.rotation += turtle.steer;
-    turtle.x += turtle.speed * Math.sin(turtle.rotation)
+    turtle.x += turtle.speed * Math.sin(turtle.rotation);
     turtle.y += -turtle.speed * Math.cos(turtle.rotation);
 
 }
