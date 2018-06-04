@@ -7,8 +7,13 @@ Port of ROS Turtlesim on the web with rosnodejs.
 git clone https://github.com/mlauret/web-turtlesim
 cd web-turtlesim
 npm install
+```
+
+## Run
+```
 npm start
 ```
+Open your favorite browser and go to http://localhost:3000 to see the turtles
 
 ## Usage
 This project aim to copy the turtlesim with web-based tools.
