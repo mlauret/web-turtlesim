@@ -1,4 +1,6 @@
 # web-turtlesim
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ec8b909b813048faa30786f2faa14d50)](https://www.codacy.com/app/lmathieu/web-turtlesim?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mlauret/web-turtlesim&amp;utm_campaign=Badge_Grade)
+
 Port of ROS Turtlesim on the web with rosnodejs.
 
 ## Installation
@@ -25,6 +27,7 @@ Refer to http://wiki.ros.org/turtlesim for usage
 
 
 ### Using prebuilt image
+
 ```
 docker run -it --env ROS_MASTER_URI=http://<hostname>:11311/ --network host mathieula/web-turtlesim
 ```
@@ -34,10 +37,13 @@ docker run -it --env ROS_MASTER_URI=http://<hostname>:11311/ --network host math
 ```
 docker build . -t  <your docker image tag>
 ```
+
 then you can launch it via :
+
 ```
 docker run -it --env ROS_MASTER_URI=http://<hostname>:11311/ --network host <your docker image tag>
 ```
+
 change <hostname> with your hostname (typically display when launching roscore) and <your docker image tag> with the tag used to build the image.
 
 
