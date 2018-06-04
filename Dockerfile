@@ -1,5 +1,6 @@
-LABEL maintainer="mathieu.lauret30@gmail.com"
 FROM ros:kinetic-ros-core
+LABEL maintainer="mathieu.lauret30@gmail.com"
+
 
 COPY client client
 COPY images images
