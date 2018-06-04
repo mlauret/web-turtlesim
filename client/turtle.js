@@ -5,13 +5,11 @@ app.renderer.backgroundColor = 0x4556FF;
 
 let turtle;
 
-$(function () {
-    var socket = io();
-    socket.on("cmd_vel_1", function(msg){
-      var array = msg.split(",");
-      turtle.speed = parseFloat(array[0]);
-      turtle.steer = parseFloat(array[1])*0.0174533;
-    });
+var socket = io();
+socket.on("cmd_vel_1", function(msg){
+  var array = msg.split(",");
+  turtle.speed = parseFloat(array[0]);
+  turtle.steer = parseFloat(array[1])*0.0174533;
 });
 
 function gameLoop(delta){
