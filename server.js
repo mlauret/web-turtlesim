@@ -4,6 +4,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var number_of_turtle = 1;
+
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
@@ -26,15 +28,13 @@ http.listen(3000, function(){
 rosnodejs.initNode('/my_node')
 .then(() => {
 	const nh = rosnodejs.nh;
-	const sub = nh.subscribe('/webturtle', 'geometry_msgs/Pose2D', (msg) => {
-	  console.log('Got msg on web-turtle: %j', msg);
-    var msg = JSON.parse(JSON.stringify(msg)) 
-    console.log(msg)
-    turtle_pos = msg.x.toString() +","+msg.theta.toString() ;
-    io.emit("position", turtle_pos);
-    console.log('message sent');
-
-	});
+	const sub = nh.subscribe('turtle'+number_of_turtle+'/cmd_vel', 'geometry_msgs/Twist', (msg) => {
+    var msg = JSON.parse(JSON.stringify(msg));
+    var turtle_number = 1; 
+    turtle_vel = msg.linear.x.toString() +","+msg.angular.z.toString() ;
+    io.emit("cmd_vel_"+turtle_number, turtle_vel);
+  });
+  number_of_turtle += 1;
 
 });
 

@@ -1,6 +1,8 @@
 //Create a Pixi Application
 let app = new PIXI.Application({ width: 512, height: 512 });
 app.renderer.autoResize = true;
+app.renderer.backgroundColor = 0x4556FF;
+
 let turtle;
 
 PIXI.loader
@@ -24,16 +26,15 @@ function setup() {
 
 $(function () {
     var socket = io();
-    socket.on('position', function(msg){
+    socket.on('cmd_vel_1', function(msg){
       var array = msg.split(",");
       turtle.speed = parseFloat(array[0]);
-      turtle.steer = parseFloat(array[1])*0,0174533;
+      turtle.steer = parseFloat(array[1])*0.0174533;
     });
 });
 
 function gameLoop(delta){
 
-    //Move the cat 1 pixel 
     turtle.rotation += turtle.steer;
     turtle.x += turtle.speed * Math.sin(turtle.rotation)
     turtle.y += -turtle.speed * Math.cos(turtle.rotation);

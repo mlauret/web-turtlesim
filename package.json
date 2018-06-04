@@ -1,7 +1,7 @@
 {
   "name": "web-turtlesim",
   "version": "1.0.0",
-  "description": "",
+  "description": "A port of ros TurtleSim on the web with rosnodejs",
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.3",
@@ -13,6 +13,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Mathieu LAURET",
   "license": "MIT"
 }
