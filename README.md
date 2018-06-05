@@ -49,7 +49,7 @@ change <hostname> with your hostname (typically display when launching roscore) 
 
 
 ### Working stuff : 
- - turtleX/cmd_vel Subscriber
+ - turtleX/cmd_vel Publisher
  
 ### Non-Working stuff (todo) : 
  - Multiple turtle
