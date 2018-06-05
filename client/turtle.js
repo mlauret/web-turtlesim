@@ -4,12 +4,21 @@ app.renderer.autoResize = true;
 app.renderer.backgroundColor = 0x4556FF;
 
 let turtle;
+let timer;
+
+function stopMoving(){
+    turtle.speed = 0;
+    turtle.steer = 0;
+}
+
 
 var socket = io();
 socket.on("cmd_vel_1", function(msg){
   var array = msg.split(",");
   turtle.speed = parseFloat(array[0]);
   turtle.steer = parseFloat(array[1])*0.0174533;
+  clearTimeout(timer);
+  timer = setTimeout(stopMoving, 1000);
 });
 
 function gameLoop(delta){
