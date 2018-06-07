@@ -4,6 +4,8 @@ var app = express();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 
+const TurtleSimSpawn = rosnodejs.require("turtlesim").srv.Spawn;
+
 var numberOfTurtle = 1;
 
 app.get("/", function(req, res){
@@ -25,17 +27,27 @@ http.listen(3000, function(){
 });
 
 
-rosnodejs.initNode("/my_node")
+rosnodejs.initNode("/web_turtlesim")
 .then(() => {
 	const nh = rosnodejs.nh;
-	const sub = nh.subscribe("turtle"+numberOfTurtle+"/cmd_vel", "geometry_msgs/Twist", (msg) => {
+	const sub_vel_default = nh.subscribe("turtle1/cmd_vel", "geometry_msgs/Twist", (msg) => {
     var data = JSON.parse(JSON.stringify(msg));
-    var turtleNumber = 1; 
-    var turtleVel = data.linear.x.toString() + "," + data.angular.z.toString() ;
-    io.emit("cmd_vel_"+turtleNumber, turtleVel);
+    var turtleVel = turtleNumber.toString()+","+data.linear.x.toString() + "," + data.angular.z.toString() ;
+    io.emit("cmd_vel", turtleVel);
   });
-  numberOfTurtle += 1;
+  let sub_vel = []
+  const srv_spawn_function = (req, resp) => {
+    numberOfTurtle += 1
+    sub_vel.push(nh.subscribe("turtle"+numberOfTurtle+"/cmd_vel", "geometry_msgs/Twist", (msg) => {
+      var data = JSON.parse(JSON.stringify(msg));
+      var turtleVel = turtleNumber.toString()+","+data.linear.x.toString() + "," + data.angular.z.toString() ;
+      io.emit("cmd_vel", turtleVel);
+    }));
 
+    return true;
+  };
+
+  const srv_spawn = nh.advertiseService("/spawn", TurtleSimSpawn, srv_spawn_function);
 });
 
 
