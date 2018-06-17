@@ -7,7 +7,7 @@ var io = require("socket.io")(http);
 const TurtleSimSpawn = rosnodejs.require("turtlesim").srv.Spawn;
 
 var numberOfTurtle = 1;
-
+var turtleNumber = 1;
 app.get("/", function(req, res){
   res.sendFile(__dirname + "/index.html");
 });
