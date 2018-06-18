@@ -2,6 +2,8 @@
 let app = new PIXI.Application({ width: 512, height: 512 });
 app.renderer.autoResize = true;
 app.renderer.backgroundColor = 0x4556FF;
+var socket = io();
+
 
 let turtlesList = [];
 
@@ -11,15 +13,7 @@ function stopMoving(){
 }
 
 
-var socket = io();
-socket.on("cmd_vel", function(msg){
-  var array = msg.split(",");
-  var turtle = turtlesList[parseInt(array[0])]
-  turtle.speed = parseFloat(array[1]);
-  turtle.steer = parseFloat(array[2])*0.0174533;
-  clearTimeout(turtle.timer);
-  turtle.timer = setTimeout(stopMoving, 1000);
-});
+
 
 function gameLoop(delta){
 
@@ -41,7 +35,22 @@ function setup() {
     app.stage.addChild(default_turtle);
     turtlesList.push(default_turtle);
     app.ticker.add((delta) => gameLoop(delta));
+    console.log("Ready");
+
+    socket.on("cmd_vel", function(msg){
+      var array = msg.split(",");
+
+      var turtle = turtlesList[parseInt(array[0])-1];
+      turtle.speed = parseFloat(array[1]);
+      turtle.steer = parseFloat(array[2])*0.0174533;
+      clearTimeout(turtle.timer);
+      turtle.timer = setTimeout(stopMoving, 1000);
+    });
 }
+
+
+
+
 
 PIXI.loader
     .add("box-turtle.png")
@@ -50,3 +59,5 @@ PIXI.loader
 
 //Add the canvas that Pixi automatically created for you to the HTML document
 document.body.appendChild(app.view);
+
+
