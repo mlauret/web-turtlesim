@@ -1,6 +1,6 @@
 {
   "name": "web-turtlesim",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A port of ros TurtleSim on the web with rosnodejs",
   "main": "index.js",
   "dependencies": {
