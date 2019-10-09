@@ -1,6 +1,5 @@
 # web-turtlesim
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ec8b909b813048faa30786f2faa14d50)](https://www.codacy.com/app/lmathieu/web-turtlesim?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mlauret/web-turtlesim&amp;utm_campaign=Badge_Grade)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mlauret_web-turtlesim&metric=alert_status)](https://sonarcloud.io/dashboard?id=mlauret_web-turtlesim)
 Port of ROS Turtlesim on the web with rosnodejs.
 
 ## Installation
