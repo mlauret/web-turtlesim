@@ -30,16 +30,16 @@ http.listen(3000, function(){
 rosnodejs.initNode("/web_turtlesim")
 .then(() => {
 	const nh = rosnodejs.nh;
-	const sub_vel_default = nh.subscribe("turtle1/cmd_vel", "geometry_msgs/Twist", (msg) => {
+	const subVelDefault = nh.subscribe("turtle1/cmd_vel", "geometry_msgs/Twist", (msg) => {
             var data = JSON.parse(JSON.stringify(msg));
             var turtleVel = turtleNumber.toString()+","+data.linear.x.toString() + "," + data.angular.z.toString() ;
             io.emit("cmd_vel", turtleVel);
 
         });
-  	let sub_vel = [];
-  	const srv_spawn_function = (req, resp) => {
-            numberOfTurtle += 1
-            sub_vel.push(nh.subscribe("turtle"+numberOfTurtle+"/cmd_vel", "geometry_msgs/Twist", (msg) => {
+    let subVel = [];
+    const srvSpawnFunction = (req, resp) => {
+            numberOfTurtle += 1;
+            subVel.push(nh.subscribe("turtle"+numberOfTurtle+"/cmd_vel", "geometry_msgs/Twist", (msg) => {
             var data = JSON.parse(JSON.stringify(msg));
             var turtleVel = turtleNumber.toString()+","+data.linear.x.toString() + "," + data.angular.z.toString() ;
             io.emit("cmd_vel", turtleVel);
@@ -48,7 +48,7 @@ rosnodejs.initNode("/web_turtlesim")
         return true;
   };
 
-  const srv_spawn = nh.advertiseService("/spawn", TurtleSimSpawn, srv_spawn_function);
+  const srvSpawn = nh.advertiseService("/spawn", TurtleSimSpawn, srvSpawnFunction);
 });
 
 
