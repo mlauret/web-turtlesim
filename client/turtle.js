@@ -25,7 +25,7 @@ function gameLoop(delta){
 }
 
 function setup() {
-    default_turtle = new PIXI.Sprite(
+    var default_turtle = new PIXI.Sprite(
         PIXI.loader.resources["box-turtle.png"].texture
     );
     default_turtle.anchor.set(0.5,0.5);
