@@ -1,5 +1,6 @@
 # web-turtlesim
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mlauret_web-turtlesim&metric=alert_status)](https://sonarcloud.io/dashboard?id=mlauret_web-turtlesim)
+[![CircleCI](https://circleci.com/gh/mlauret/web-turtlesim.svg?style=svg)](https://circleci.com/gh/mlauret/web-turtlesim)
 
 Port of ROS Turtlesim on the web with rosnodejs.
 
