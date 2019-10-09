@@ -4,6 +4,16 @@
 
 Port of ROS Turtlesim on the web with rosnodejs.
 
+## Requirement
+
+Tested with `node 6.12.3`, `ROS Kinetic`, `Ubuntu 16.04`
+
+Install Ros turtlesim : 
+
+```
+sudo apt install ros-<distro>-turtlesim
+```
+
 ## Installation
 
 ```
